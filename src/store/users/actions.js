@@ -109,6 +109,5 @@ export const deleteUser = id => {
                     payload: error
                 })
             })
-
     }
 }
