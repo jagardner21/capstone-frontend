@@ -1,24 +1,21 @@
-import { GET_TEAMS_PENDING, GET_ONE_TEAM_PENDING, ADD_TEAM_PENDING, EDIT_TEAM_PENDING, DELETE_TEAM_PENDING, GET_TEAMS_FAILED, GET_ONE_TEAM_FAILED, ADD_TEAM_FAILED, EDIT_TEAM_FAILED, DELETE_TEAM_FAILED, GET_TEAMS_SUCCESS, GET_ONE_TEAM_SUCCESS, ADD_TEAM_SUCCESS, EDIT_TEAM_SUCCESS, DELETE_TEAM_SUCCESS } from "./constants";
-import { deleteTeam } from "./actions";
+import { GET_TEAMS_PENDING, GET_ONE_TEAM_PENDING, ADD_TEAM_PENDING, EDIT_TEAM_PENDING, DELETE_TEAM_PENDING, GET_TEAMS_FAILED, GET_ONE_TEAM_FAILED, ADD_TEAM_FAILED, EDIT_TEAM_FAILED, DELETE_TEAM_FAILED, GET_TEAMS_SUCCESS, GET_ONE_TEAM_SUCCESS, ADD_TEAM_SUCCESS, EDIT_TEAM_SUCCESS, DELETE_TEAM_SUCCESS, SET_SELECTED_TEAM } from "./constants";
 
 
 let initialState = {
     all: [],
-    oneTeam: {},
+    selectedTeamId: 0,
     err: {}
 }
 
 export default (state = initialState, action) =>{
     switch(action.type){
         case GET_TEAMS_PENDING:
-        case GET_ONE_TEAM_PENDING:
         case ADD_TEAM_PENDING:
         case EDIT_TEAM_PENDING:
         case DELETE_TEAM_PENDING:
             return state;
 
         case GET_TEAMS_FAILED:
-        case GET_ONE_TEAM_FAILED:
         case ADD_TEAM_FAILED:
         case EDIT_TEAM_FAILED:
         case DELETE_TEAM_FAILED:
@@ -35,11 +32,11 @@ export default (state = initialState, action) =>{
                 all: teams
             }
 
-        case GET_ONE_TEAM_SUCCESS:
-            let oneTeam = action.payload;
+        case SET_SELECTED_TEAM:
+            let selectedTeamId = action.payload
             return {
                 ...state,
-                oneTeam: oneTeam
+                selectedTeamId: selectedTeamId
             }
 
         case ADD_TEAM_SUCCESS:

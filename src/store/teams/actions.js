@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_TEAMS_PENDING, GET_TEAMS_SUCCESS, GET_TEAMS_FAILED, GET_ONE_TEAM_PENDING, GET_ONE_TEAM_SUCCESS, GET_ONE_TEAM_FAILED, ADD_TEAM_PENDING, ADD_TEAM_SUCCESS, ADD_TEAM_FAILED, EDIT_TEAM_PENDING, EDIT_TEAM_SUCCESS, EDIT_TEAM_FAILED, DELETE_TEAM_PENDING, DELETE_TEAM_SUCCESS, DELETE_TEAM_FAILED } from './constants'
+import { GET_TEAMS_PENDING, GET_TEAMS_SUCCESS, GET_TEAMS_FAILED, SET_SELECTED_TEAM, ADD_TEAM_PENDING, ADD_TEAM_SUCCESS, ADD_TEAM_FAILED, EDIT_TEAM_PENDING, EDIT_TEAM_SUCCESS, EDIT_TEAM_FAILED, DELETE_TEAM_PENDING, DELETE_TEAM_SUCCESS, DELETE_TEAM_FAILED } from './constants'
 
 const url = "http://localhost:8080"
 
@@ -25,25 +25,12 @@ export const getTeams = () => {
     }
 }
 
-export const getOneTeam = id => {
+export const setSelectedTeam = teamId => {
     return dispatch => {
         dispatch({
-            type: GET_ONE_TEAM_PENDING
+            type: SET_SELECTED_TEAM,
+            payload: teamId
         })
-        axios.get(`${url}/teams/${id}`)
-            .then(res => {
-                let team = res.data
-                dispatch({
-                    type: GET_ONE_TEAM_SUCCESS,
-                    payload: team
-                })
-            })
-            .catch(error => {
-                dispatch({
-                    type: GET_ONE_TEAM_FAILED,
-                    payload: error
-                })
-            })
     }
 }
 
