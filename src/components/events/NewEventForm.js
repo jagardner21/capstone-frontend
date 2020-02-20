@@ -16,44 +16,74 @@ class NewEventForm extends Component {
 
     handleChange = e => {
         let { name, value } = e.target
-        this.setState({ [name]: value })
+        this.setState({ [name]: value }, ()=> console.log("STATE", this.state))
     }
 
     handleSubmit = e => {
         e.preventDefault()
         this.props.dispatch(addEvent(this.state))
+        //ensure submit only works if all inputs filled out
         //TODO: clear out the form back to default state
     }
 
+    handleSelectTeam = e => {
+        let { value } = e.target
+        this.props.dispatch(setSelectedTeam(value))
+    }
+
+
     render() {
+
         let teams = this.props.teams
-        console.log("TEAMS", teams)
         let teamsOptions = teams.map(team => {
-            return <option>{team.name}</option>
+            return <option key={team.id} value={team.id}>{team.name}</option>
         })
+
+        let users = this.props.users.filter(user => {
+            return user.team_id == this.props.selectedTeamId
+        })
+
+        let usersOptions = users.map(user => {
+            return <option key={user.id} value={user.id}>{user.name}</option>
+        })
+
+        
+        
         return (
             <Form onSubmit={this.handleSubmit} className="pb-5">
                 <FormGroup>
                     <Label>Team Name</Label>
-                    <Input onChange={this.handleChange} type="select" name="team name" placeholder="required">
+                    <Input onChange={this.handleSelectTeam} type="select" name="team name">
+                        <option selected disabled>Select Team</option> 
                         {teamsOptions} 
                     </Input>
                 </FormGroup>
                 <FormGroup>
                     <Label>Troubleshooter</Label>
-                    <Input onChange={this.handleChange} min={0} max={5} type="number" name="rating" placeholder="optional" />
+                    <Input onChange={this.handleChange} type="select" name="user_id">
+                        <option selected disabled>Select User</option> 
+                        {usersOptions} 
+                    </Input>
                 </FormGroup>
                 <FormGroup>
                 <FormGroup>
-                    <Label>Duration</Label>
-                    <Input onChange={this.handleChange} type="textarea" name="review_body" placeholder="optional"/>
+                    <Label>Task Type</Label>
+                    <Input onChange={this.handleChange} type="select" name="type">
+                        <option selected disabled>Select Task</option>
+                        {/* LOOK INTO WHETHER OR NOT DIFFERENT TEAMS HAVE DIFFERENT TASK TYPES */}
+                        <option>Task Type 1</option>
+                        <option>Task Type 2</option>
+                        <option>Task Type 3</option>
+                        <option>Task Type 4</option>
+                        <option>Task Type 5</option>
+                        </Input>
                 </FormGroup>
                     <Label>Date</Label>
-                    <Input onChange={this.handleChange} type="textarea" name="review_body" placeholder="optional"/>
+                    <Input onChange={this.handleChange} type="date" name="date"/>
                 </FormGroup>
                 <FormGroup>
-                    <Label>Duration</Label>
-                    <Input onChange={this.handleChange} type="textarea" name="review_body" placeholder="optional"/>
+                    <Label>Duration (in minutes)</Label>
+                    <Input onChange={this.handleChange} type="number" name="durationInMinutes"/>
                 </FormGroup>
                 <Button>Submit</Button>
             </Form>

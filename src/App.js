@@ -5,6 +5,8 @@ import { getTeams } from './store/teams/actions'
 import { getUsers } from './store/users/actions'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import NewEventForm from './components/events/NewEventForm'
+import TopNav from "./components/layout/TopNav";
+import { Container, Row, Col } from "reactstrap";
 
 
 
@@ -21,7 +23,27 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NewEventForm  />
+        <TopNav/>
+        <Container>
+          <Row>
+            <Col xs="2">
+            
+            </Col>
+            <Col xs="8">
+              <Switch>
+                <Route exact path="/" component={NewEventForm}/>
+                  {/* <Route path="/analytics" component={Analytics}/> */}
+                  {/* <Route path="/teams" component={Teams}/> */}
+                  {/* <Route path="/users" component={Users}/> */}
+                  {/* <Route path="/events" component={Events}/> */}
+              </Switch>
+            </Col>
+            <Col xs="2">
+            
+            </Col>
+          </Row>
+        </Container>
+        
       </Router>
       
     </div>
