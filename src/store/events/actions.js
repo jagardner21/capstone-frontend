@@ -48,16 +48,17 @@ export const getOneEvent = id => {
 }
 
 export const addEvent = newEvent => {
+    console.log("NEW EVENT", newEvent)
     return dispatch => {
         dispatch({
             type: ADD_EVENT_PENDING
         })
-        axios.put(`${url}/events`, newEvent)
+        axios.post(`${url}/events`, newEvent)
             .then(res => {
-                let newEvent = res.json
+                
                 dispatch({
                     type: ADD_EVENT_SUCCESS,
-                    payload: newEvent
+                    payload: res.data
                 })
             })
             .catch(error => {

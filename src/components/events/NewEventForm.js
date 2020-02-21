@@ -8,26 +8,34 @@ import { connect } from 'react-redux'
 class NewEventForm extends Component {
 
     state = {
+        team_name: 0,
         user_id: 0,
-        type: "",
+        type: 0,
         durationInMinutes: 0,
         date: ""
     }
 
     handleChange = e => {
         let { name, value } = e.target
-        this.setState({ [name]: value }, ()=> console.log("STATE", this.state))
+        this.setState({ [name]: value })
     }
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.dispatch(addEvent(this.state))
-        //ensure submit only works if all inputs filled out
-        //TODO: clear out the form back to default state
+        let { team_name, ...newEvent } = this.state
+        this.props.dispatch(addEvent(newEvent))
+        this.setState({
+            team_name: 0,
+            user_id: 0,
+            type: 0,
+            durationInMinutes: 0,
+            date: ""
+        })
     }
 
     handleSelectTeam = e => {
-        let { value } = e.target
+        let { name, value } = e.target
+        this.setState({ [name]: value })
         this.props.dispatch(setSelectedTeam(value))
     }
 
@@ -42,7 +50,6 @@ class NewEventForm extends Component {
         let users = this.props.users.filter(user => {
             return user.team_id == this.props.selectedTeamId
         })
-
         let usersOptions = users.map(user => {
             return <option key={user.id} value={user.id}>{user.name}</option>
         })
@@ -52,24 +59,24 @@ class NewEventForm extends Component {
         return (
             <Form onSubmit={this.handleSubmit} className="pb-5">
                 <FormGroup>
-                    <Label>Team Name</Label>
-                    <Input onChange={this.handleSelectTeam} type="select" name="team name">
-                        <option selected disabled>Select Team</option> 
+                    <Label>Select Team</Label>
+                    <Input onChange={this.handleSelectTeam} value={this.state.team_name} type="select" name="team_name">
+                        <option value="0" selected disabled>Select Team</option> 
                         {teamsOptions} 
                     </Input>
                 </FormGroup>
                 <FormGroup>
                     <Label>Troubleshooter</Label>
-                    <Input onChange={this.handleChange} type="select" name="user_id">
-                        <option selected disabled>Select User</option> 
+                    <Input onChange={this.handleChange} value={this.state.user_id} type="select" name="user_id">
+                        <option value="0" selected disabled>Select User</option> 
                         {usersOptions} 
                     </Input>
                 </FormGroup>
                 <FormGroup>
                 <FormGroup>
                     <Label>Task Type</Label>
-                    <Input onChange={this.handleChange} type="select" name="type">
-                        <option selected disabled>Select Task</option>
+                    <Input onChange={this.handleChange} value={this.state.type} type="select" name="type">
+                        <option value="0" selected disabled>Select Task</option>
                         {/* LOOK INTO WHETHER OR NOT DIFFERENT TEAMS HAVE DIFFERENT TASK TYPES */}
                         <option>Task Type 1</option>
                         <option>Task Type 2</option>
@@ -79,11 +86,11 @@ class NewEventForm extends Component {
                         </Input>
                 </FormGroup>
                     <Label>Date</Label>
-                    <Input onChange={this.handleChange} type="date" name="date"/>
+                    <Input onChange={this.handleChange} value={this.state.date} type="date" name="date"/>
                 </FormGroup>
                 <FormGroup>
                     <Label>Duration (in minutes)</Label>
-                    <Input onChange={this.handleChange} type="number" name="durationInMinutes"/>
+                    <Input onChange={this.handleChange} value={this.state.durationInMinutes} type="number" name="durationInMinutes"/>
                 </FormGroup>
                 <Button>Submit</Button>
             </Form>

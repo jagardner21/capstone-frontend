@@ -39,7 +39,7 @@ export const addTeam = newTeam => {
         dispatch({
             type: ADD_TEAM_PENDING
         })
-        axios.put(`${url}/teams`, newTeam)
+        axios.post(`${url}/teams`, newTeam)
             .then(res => {
                 let newTeam = res.json
                 dispatch({

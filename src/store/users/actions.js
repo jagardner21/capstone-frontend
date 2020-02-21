@@ -52,7 +52,7 @@ export const addUser = newUser => {
         dispatch({
             type: ADD_USER_PENDING
         })
-        axios.put(`${url}/users`, newUser)
+        axios.post(`${url}/users`, newUser)
             .then(res => {
                 let newUser = res.json
                 dispatch({

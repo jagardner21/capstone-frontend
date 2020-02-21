@@ -11,7 +11,7 @@ const TopNav = (props) => {
   return (
     <div>
       <Navbar light>
-        <NavbarBrand><NavLink className="nav-brand" to='/'>TrackR
+        <NavbarBrand><NavLink className="nav-brand" to='/'>TRAKR
         </NavLink></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
