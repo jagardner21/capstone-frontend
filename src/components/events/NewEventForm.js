@@ -102,8 +102,7 @@ function mapStateToProps(state){
     return {
         users: state.users.all,
         teams: state.teams.all,
-        selectedTeamId: state.teams.selectedTeamId,
-        event: state.events.all
+        selectedTeamId: state.teams.selectedTeamId
     }
 }
 
