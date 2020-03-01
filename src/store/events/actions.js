@@ -21,6 +21,7 @@ export const getEvents = () => {
                     type: GET_EVENTS_FAILED,
                     payload: error
                 })
+                alert(error)
             })
     }
 }
@@ -55,17 +56,18 @@ export const addEvent = newEvent => {
         })
         axios.post(`${url}/events`, newEvent)
             .then(res => {
-                
                 dispatch({
                     type: ADD_EVENT_SUCCESS,
                     payload: res.data
                 })
+                alert("Event tracked successfully")
             })
             .catch(error => {
                 dispatch({
                     type: ADD_EVENT_FAILED,
                     payload: error
                 })
+                alert(error + "Event not tracked")
             })
     }
 }
@@ -87,6 +89,7 @@ export const editEvent = editedEvent => {
                     type: EDIT_EVENT_FAILED,
                     payload: error
                 })
+                alert(error)
             })
     }
 }
@@ -109,6 +112,7 @@ export const deleteEvent = id => {
                     type: DELETE_EVENT_FAILED,
                     payload: error
                 })
+                alert(error)
             })
     }
 }
