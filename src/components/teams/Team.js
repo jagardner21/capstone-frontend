@@ -34,24 +34,24 @@ const Team = (props) => {
             <Button color="secondary" onClick={toggleEditTeamModal}>Cancel</Button>
             </ModalFooter>
             </Modal>
-            <Button color="danger" onClick={toggleEditTeamModal}>{"hello"}</Button>
 
-            <Container className="card status-card">
+            <Container className="card status-card pl-3 pt-3 pb-2 pr-0 mb-2">
                 <Row>
-                    <Col className="pl-0 pr-0" xs="10">
+                    <Col className="pl-3" xs="9">
                             <h6>{props.team.name}</h6>
                     </Col>
-                    <Col>
-                        <Button>Edit Team</Button>
+                    <Col className="pl-5 pr-0">
+                    <Button color="light" onClick={toggleEditTeamModal} size="sm">Edit Team</Button>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs="1"></Col>
-                    <Col cs="11">
+                    <Col className="pl-1" xs="11">
                         {teamMembers}
                     </Col>
                 </Row>
             </Container>
+            
         </Container>
     )
 

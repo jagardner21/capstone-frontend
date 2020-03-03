@@ -7,7 +7,7 @@ import { Container, Row, Col, Link } from 'reactstrap'
 
 const Teams = (props) => {
 
-    let teams = this.props.teams
+    let teams = props.teams
 
     let teamObjects = teams.map(team => {
         return <Team key={team.id} team={team}></Team>
