@@ -14,12 +14,17 @@ class Analytics extends Component {
 
     handleChange = e => {
         let { value, name } = e.target
-        this.setState({ [name]: value })
+        this.setState({ 
+            [name]: value
+        })
     }
+
+    // declare a createData function and keep data variable in state?? - need an adult
 
     render(){
   
         const teams = this.props.teams
+        const events = this.props.events
         const users = this.props.users
 
         const selectedTeam = this.props && this.props.teams && this.props.teams[0] && this.props.teams[0].name ? this.props.teams.filter(team => team.id == this.state.teamId)[0] : []

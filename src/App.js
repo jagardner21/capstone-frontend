@@ -6,6 +6,7 @@ import { getUsers } from './store/users/actions'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import NewEventForm from './components/events/NewEventForm'
 import TopNav from "./components/layout/TopNav";
+import Teams from "./components/teams/Teams";
 import Analytics from './components/analytics/Analytics'
 import { Container, Row, Col } from "reactstrap";
 
@@ -34,7 +35,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={NewEventForm}/>
                   <Route path="/analytics" component={Analytics}/>
-                  {/* <Route path="/teams" component={Teams}/> */}
+                  <Route path="/teams" component={Teams}/>
                   {/* <Route path="/users" component={Users}/> */}
                   {/* <Route path="/events" component={Events}/> */}
               </Switch>
