@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { addEvent } from '../../store/events/actions'
 import { setSelectedTeam } from '../../store/teams/actions'
 //import PropTypes from 'prop-types'
@@ -57,43 +57,47 @@ class NewEventForm extends Component {
         
         
         return (
-            <Form onSubmit={this.handleSubmit} className="pb-5">
-                <FormGroup>
-                    <Label>Select Team</Label>
-                    <Input onChange={this.handleSelectTeam} value={this.state.team_name} type="select" name="team_name">
-                        <option value="0" selected disabled>Select Team</option> 
-                        {teamsOptions} 
-                    </Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Troubleshooter</Label>
-                    <Input onChange={this.handleChange} value={this.state.user_id} type="select" name="user_id">
-                        <option value="0" selected disabled>Select User</option> 
-                        {usersOptions} 
-                    </Input>
-                </FormGroup>
-                <FormGroup>
-                <FormGroup>
-                    <Label>Task Type</Label>
-                    <Input onChange={this.handleChange} value={this.state.type} type="select" name="type">
-                        <option value="0" selected disabled>Select Task</option>
-                        {/* LOOK INTO WHETHER OR NOT DIFFERENT TEAMS HAVE DIFFERENT TASK TYPES */}
-                        <option>Task Type 1</option>
-                        <option>Task Type 2</option>
-                        <option>Task Type 3</option>
-                        <option>Task Type 4</option>
-                        <option>Task Type 5</option>
+            <Container>
+                <h3 className="mb-4">Track Event</h3>    
+                <Form onSubmit={this.handleSubmit} className="pb-5 pl-5">
+                    <FormGroup>
+                        <Label>Select Team</Label>
+                        <Input className="w-50" onChange={this.handleSelectTeam} value={this.state.team_name} type="select" name="team_name">
+                            <option value="0" selected disabled>Select Team</option> 
+                            {teamsOptions} 
                         </Input>
-                </FormGroup>
-                    <Label>Date</Label>
-                    <Input onChange={this.handleChange} value={this.state.date} type="date" name="date"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Duration (in minutes)</Label>
-                    <Input onChange={this.handleChange} value={this.state.durationInMinutes} type="number" name="durationInMinutes"/>
-                </FormGroup>
-                <Button>Submit</Button>
-            </Form>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>Troubleshooter</Label>
+                        <Input className="w-50" onChange={this.handleChange} value={this.state.user_id} type="select" name="user_id">
+                            <option value="0" selected disabled>Select User</option> 
+                            {usersOptions} 
+                        </Input>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>Task Type</Label>
+                        <Input className="w-50" onChange={this.handleChange} value={this.state.type} type="select" name="type">
+                            <option value="0" selected disabled>Select Task</option>
+                            {/* LOOK INTO WHETHER OR NOT DIFFERENT TEAMS HAVE DIFFERENT TASK TYPES */}
+                            <option>Task Type 1</option>
+                            <option>Task Type 2</option>
+                            <option>Task Type 3</option>
+                            <option>Task Type 4</option>
+                            <option>Task Type 5</option>
+                        </Input>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>Date</Label>
+                        <Input className="w-50" onChange={this.handleChange} value={this.state.date} type="date" name="date"/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>Duration (in minutes)</Label>
+                        <Input className="w-50" onChange={this.handleChange} value={this.state.durationInMinutes} type="number" name="durationInMinutes"/>
+                    </FormGroup>
+                    <Button>Submit</Button>
+                </Form>
+            </Container>
+            
         )
     }
 }

@@ -28,10 +28,10 @@ function App() {
         <TopNav/>
         <Container>
           <Row>
-            <Col xs="2">
+            <Col xs="1">
             
             </Col>
-            <Col xs="8">
+            <Col className="pt-4" xs="10">
               <Switch>
                 <Route exact path="/" component={NewEventForm}/>
                   <Route path="/analytics" component={Analytics}/>
@@ -40,7 +40,7 @@ function App() {
                   {/* <Route path="/events" component={Events}/> */}
               </Switch>
             </Col>
-            <Col xs="2">
+            <Col xs="1">
             
             </Col>
           </Row>

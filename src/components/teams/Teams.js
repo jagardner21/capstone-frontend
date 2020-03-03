@@ -15,6 +15,7 @@ const Teams = (props) => {
 
     return (
         <div>
+            <h3 className="mb-4">Troubleshooter Teams</h3>
             {teamObjects}
         </div>
   )

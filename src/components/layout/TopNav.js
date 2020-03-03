@@ -10,12 +10,12 @@ const TopNav = (props) => {
   
   return (
     <div>
-      <Navbar light>
-        <NavbarBrand><NavLink className="nav-brand" to='/'>TRAKR
+      <Navbar className="navbar" color="dark" dark>
+        <NavbarBrand><NavLink className="nav-brand navbar-text" to='/'>TRAKR
         </NavLink></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
+          <Nav navbar className="navbar-text">
             <NavItem>
               <NavLink onClick={toggleNavbar} to='/'>Log Event</NavLink>
             </NavItem>
@@ -24,9 +24,6 @@ const TopNav = (props) => {
             </NavItem>
             <NavItem>
               <NavLink onClick={toggleNavbar} to='/teams'>Manage Teams</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink onClick={toggleNavbar} to='/users'>Manage Users</NavLink>
             </NavItem>
             <NavItem>
               <NavLink onClick={toggleNavbar} to='/events'>Manage Events</NavLink>
