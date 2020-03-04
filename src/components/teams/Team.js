@@ -4,6 +4,7 @@ import TeamMember from './TeamMember'
 import EditTeam from './EditTeam'
 import DeleteTeam from './DeleteTeam'
 import { connect } from 'react-redux'
+import { FaEdit } from 'react-icons'
 
 const Team = (props) => {
 
@@ -42,7 +43,7 @@ const Team = (props) => {
             </Modal>
 
             <Container className="card status-card pl-3 pt-3 pb-4 pr-3 mb-2">
-                <Row>
+                <Row className="mb-4">
                     <Col xs="8">
                             <h6>{props.team.name}</h6>
                     </Col>
@@ -57,9 +58,19 @@ const Team = (props) => {
                     <Col xs="1"></Col>
                     <Col className="pl-1" xs="11">
                         <Table>
-
+                            <thead>
+                                <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {teamMembers}
+                            </tbody>
+                            
                         </Table>
-                        {teamMembers}
                     </Col>
                 </Row>
             </Container>

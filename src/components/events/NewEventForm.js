@@ -62,21 +62,21 @@ class NewEventForm extends Component {
                 <Form onSubmit={this.handleSubmit} className="pb-5 pl-5">
                     <FormGroup>
                         <Label>Select Team</Label>
-                        <Input className="w-50" onChange={this.handleSelectTeam} value={this.state.team_name} type="select" name="team_name">
+                        <Input className="w-75" onChange={this.handleSelectTeam} value={this.state.team_name} type="select" name="team_name">
                             <option value="0" selected disabled>Select Team</option> 
                             {teamsOptions} 
                         </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label>Troubleshooter</Label>
-                        <Input className="w-50" onChange={this.handleChange} value={this.state.user_id} type="select" name="user_id">
+                        <Input className="w-75" onChange={this.handleChange} value={this.state.user_id} type="select" name="user_id">
                             <option value="0" selected disabled>Select User</option> 
                             {usersOptions} 
                         </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label>Task Type</Label>
-                        <Input className="w-50" onChange={this.handleChange} value={this.state.type} type="select" name="type">
+                        <Input className="w-75" onChange={this.handleChange} value={this.state.type} type="select" name="type">
                             <option value="0" selected disabled>Select Task</option>
                             {/* LOOK INTO WHETHER OR NOT DIFFERENT TEAMS HAVE DIFFERENT TASK TYPES */}
                             <option>Task Type 1</option>
@@ -88,11 +88,11 @@ class NewEventForm extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Label>Date</Label>
-                        <Input className="w-50" onChange={this.handleChange} value={this.state.date} type="date" name="date"/>
+                        <Input className="w-75" onChange={this.handleChange} value={this.state.date} type="date" name="date"/>
                     </FormGroup>
                     <FormGroup>
                         <Label>Duration (in minutes)</Label>
-                        <Input className="w-50" onChange={this.handleChange} value={this.state.durationInMinutes} type="number" name="durationInMinutes"/>
+                        <Input className="w-75" onChange={this.handleChange} value={this.state.durationInMinutes} type="number" name="durationInMinutes"/>
                     </FormGroup>
                     <Button>Submit</Button>
                 </Form>
