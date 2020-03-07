@@ -57,7 +57,7 @@ class NewEventForm extends Component {
         
         
         return (
-            <Container>
+            <Container className="mt-5">
                 <h3 className="mb-4">Track Event</h3>    
                 <Form onSubmit={this.handleSubmit} className="pb-5 pl-5">
                     <FormGroup>

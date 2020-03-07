@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Form, Input, Label, Button, Container, Row, Col, FormGroup } from 'reactstrap'
+import React, { Component, Fragment } from 'react'
+import { Form, Input, Label, Button, Container, Row, Col, FormGroup, ModalFooter } from 'reactstrap'
 import { connect } from 'react-redux'
 import { deleteTeam } from '../../store/teams/actions'
 
@@ -34,20 +34,24 @@ class DeleteTeam extends Component {
 
     render () {
         return (
-            <Container>
-                <Row>
-                    <Col>
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup className="mt-3 mb-3">
-                                <Label className="mr-2">DELETE TEAM FOR REAL?</Label>
-                                <Input onChange={this.handleChange} name="confirmation" value={this.state.confirmation} placeholder={"Type 'I am sure' to confirm"} default={this.props.team.name} className="mr-3 mb-3"></Input>
-                                <Button disabled={!this.state.deleteButtonActive} color="danger" size="sm" onClick={this.handleSubmit}>DELETE TEAM FOR REAL</Button>
-                            </FormGroup>                          
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
-            
+            <Fragment>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Form onSubmit={this.handleSubmit}>
+                                <FormGroup className="mt-3 mb-3">
+                                    <Label className="mr-2">DELETE TEAM FOR REAL?</Label>
+                                    <Input onChange={this.handleChange} name="confirmation" value={this.state.confirmation} placeholder={"Type 'I am sure' to confirm"} default={this.props.team.name} className="mr-3 mb-3"></Input>
+                                </FormGroup>                          
+                            </Form>
+                        </Col>
+                    </Row>
+                </Container>
+                <ModalFooter>
+                    <Button disabled={!this.state.deleteButtonActive} color="danger" onClick={this.handleSubmit}>DELETE TEAM FOR REAL</Button>
+                    <Button color="secondary" onClick={this.props.toggleDeleteTeamModal}>Cancel</Button>
+                </ModalFooter>
+            </Fragment>
         )
     }
 }

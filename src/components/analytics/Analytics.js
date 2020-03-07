@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { BarChart, Bar, XAxis, CartesianGrid, YAxis, Tooltip, Legend } from 'recharts'
 import { connect } from 'react-redux'
-import { CSVLink } from 'react-csv'
+import { CSVLink, CSVDownload } from 'react-csv'
+import { saveAs } from 'file-saver'
+import { json2csv } from 'json-2-csv'
 import { Form, Row, Col, FormGroup, Label, Input, Button} from 'reactstrap'
 
 class Analytics extends Component {
@@ -12,6 +14,14 @@ class Analytics extends Component {
         endDate: ''
     }
 
+    handleDownload = (data, selectedTeam) => {
+        console.log(selectedTeam)
+        json2csv(data, (err, csv) => {
+            var blob = new Blob([csv], { type: "text/plain;charset=utf-8" })
+            saveAs(blob, `${selectedTeam && selectedTeam}_${this.state.startDate}-${this.state.endDate}.csv`)
+        })
+    }
+
     handleChange = e => {
         let { value, name } = e.target
         this.setState({ 
@@ -19,7 +29,6 @@ class Analytics extends Component {
         })
     }
 
-    // declare a createData function and keep data variable in state?? - need an adult
 
     render(){
   
@@ -28,7 +37,6 @@ class Analytics extends Component {
         const users = this.props.users
 
         const selectedTeam = this.props && this.props.teams && this.props.teams[0] && this.props.teams[0].name ? this.props.teams.filter(team => team.id == this.state.teamId)[0] : []
-        console.log("SELECTED TEAM NAME", selectedTeam)
 
         const teamMembers = users.filter(user => {
             return user.team_id == this.state.teamId
@@ -36,9 +44,12 @@ class Analytics extends Component {
 
         let allTeamEvents = []
 
-
         teamMembers.forEach(teamMember => {
-            allTeamEvents = allTeamEvents.concat(teamMember.events)
+            events.forEach(event => {
+                if(event.user_id == teamMember.id){
+                    allTeamEvents.push(event)
+                }
+            })
         })
 
         const data = []
@@ -47,35 +58,29 @@ class Analytics extends Component {
             const isAfterStartDate = event.date >= this.state.startDate
             const isBeforeEndDate = event.date <= this.state.endDate
             if(isAfterStartDate && isBeforeEndDate){
-                if(!data.some(ev => ev.name == event.type)){
+                if(!data.find(ev => ev.name === event.type)){
                     data.push({
                         name: event.type,
                         Hours: Math.round(((event.durationInMinutes/60)*100))/100
                     })
                 } else {
-                    let existingEvent = data.find(ev => event.type)
+                    let existingEvent = data.find(ev => ev.name === event.type)
                     existingEvent.Hours += Math.round((event.durationInMinutes/60)*100)/100 
                 }
             }
-            
-        })
-    
-        const headers = [
-            { label: "Task Type", key: "name" },
-            { label: "Hours", key: "Hours" }
-        ]
+        })      
         
         let teamOptions = teams.map(team => {
             return <option key={team.id} value={team.id}>{team.name}</option>
         })
         
+        
         return (
-            <div>
+            <div className="mb-3 mt-5">
                 <Form>
-                    <Row form>
+                    <Row form >
                         <Col xs={4}>
                             <FormGroup row>
-                                <Label></Label>
                                 <Input onChange={this.handleChange} name="teamId" type="select">
                                     <option value="0" selected disabled>Select Team</option>
                                     {teamOptions}
@@ -106,23 +111,18 @@ class Analytics extends Component {
                     <div>
                         <p>Hours per task for {selectedTeam && selectedTeam.name}</p>
                         <BarChart width={700} height={400} data={data}>
-                        <CartesianGrid stroke="#f5f5f5" />
-                        <XAxis dataKey="name"></XAxis>
-                        <YAxis />
-                        <Tooltip />
-                        <Bar dataKey="Hours" fill="#255469"></Bar>
+                            <CartesianGrid stroke="#f5f5f5" />
+                            <XAxis dataKey="name"></XAxis>
+                            <YAxis />
+                            <Tooltip />
+                            <Bar dataKey="Hours" fill="#255469"></Bar>
                         </BarChart> 
-                        <CSVLink filename={`${selectedTeam && selectedTeam.name}_${this.state.startDate}-${this.state.endDate}.csv`} data={data} headers={headers}>
-                            Download CSV
-                        </CSVLink>
-                    </div>
-                    
+                        <Button onClick={() => this.handleDownload(data, selectedTeam.name)}>Download CSV</Button>
+                    </div> 
                     : 
                     <p>Please select a team and date range</p>
                     }
-                </div>
-                
-                
+                </div>                
             </div>
         )
     }

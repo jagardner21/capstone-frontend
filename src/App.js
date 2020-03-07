@@ -31,7 +31,7 @@ function App() {
             <Col xs="1">
             
             </Col>
-            <Col className="pt-4" xs="10">
+            <Col className="pt-4 mt-4" xs="10">
               <Switch>
                 <Route exact path="/" component={NewEventForm}/>
                   <Route path="/analytics" component={Analytics}/>

@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { Button, Container, Row, Col } from 'reactstrap'
 import Team from './Team'
-import { Button, Modal, ModalHeader, ModalBody, NavLink, ModalFooter } from 'reactstrap'
-import { Container, Row, Col, Link } from 'reactstrap'
-
 
 const Teams = (props) => {
 
@@ -14,10 +12,11 @@ const Teams = (props) => {
     })
 
     return (
-        <div>
-            <h3 className="mb-4">Troubleshooter Teams</h3>
+        <Container className="mt-5">
+            <h3 className="mb-3">Troubleshooter Teams</h3>
+            <Button className="mb-3" size="sm">Add New Team</Button>            
             {teamObjects}
-        </div>
+        </Container>
   )
 }
 

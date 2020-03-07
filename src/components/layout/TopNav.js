@@ -10,7 +10,7 @@ const TopNav = (props) => {
   
   return (
     <div>
-      <Navbar className="navbar" color="dark" dark>
+      <Navbar className="navbar" color="dark" dark fixed="top">
         <NavbarBrand><NavLink className="nav-brand navbar-text" to='/'>TRAKR
         </NavLink></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />

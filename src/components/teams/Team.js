@@ -4,7 +4,6 @@ import TeamMember from './TeamMember'
 import EditTeam from './EditTeam'
 import DeleteTeam from './DeleteTeam'
 import { connect } from 'react-redux'
-import { FaEdit } from 'react-icons'
 
 const Team = (props) => {
 
@@ -15,6 +14,8 @@ const Team = (props) => {
     const [deleteTeamModal, setDeleteTeamModal] = useState(false)
 
     const toggleDeleteTeamModal = () => setDeleteTeamModal(!deleteTeamModal)
+
+    
 
     const teamMembers = props.users.map(user => {
         if(user.team_id == props.team.id){
@@ -27,20 +28,16 @@ const Team = (props) => {
         <Container className="pb-4">
 
             <Modal isOpen={editTeamModal} toggle={toggleEditTeamModal}>
-                <ModalHeader toggle={toggleEditTeamModal}>Edit Team</ModalHeader>
-                <EditTeam team={props.team}></EditTeam>
-                <ModalFooter>
-                <Button color="secondary" onClick={toggleEditTeamModal}>Cancel</Button>
-                </ModalFooter>
+                <ModalHeader>Edit Team</ModalHeader>
+                <EditTeam toggleEditTeamModal={toggleEditTeamModal} team={props.team}></EditTeam>
             </Modal>
 
             <Modal isOpen={deleteTeamModal} toggle={toggleDeleteTeamModal}>
-                <ModalHeader toggle={toggleDeleteTeamModal}>Delete Team</ModalHeader>
-                <DeleteTeam team={props.team}></DeleteTeam>
-                <ModalFooter>
-                <Button color="secondary" onClick={toggleDeleteTeamModal}>Cancel</Button>
-                </ModalFooter>
+                <ModalHeader>Delete Team</ModalHeader>
+                <DeleteTeam toggleDeleteTeamModal={toggleDeleteTeamModal} toggle={toggleDeleteTeamModal} team={props.team}></DeleteTeam>
             </Modal>
+
+            
 
             <Container className="card status-card pl-3 pt-3 pb-4 pr-3 mb-2">
                 <Row className="mb-4">
@@ -69,8 +66,12 @@ const Team = (props) => {
                             <tbody>
                                 {teamMembers}
                             </tbody>
-                            
                         </Table>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="ml-3" xs="9">
+                        <Button size="sm">Add New Troubleshooter</Button>
                     </Col>
                 </Row>
             </Container>
