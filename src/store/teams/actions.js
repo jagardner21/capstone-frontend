@@ -41,7 +41,7 @@ export const addTeam = newTeam => {
         })
         axios.post(`${url}/teams`, newTeam)
             .then(res => {
-                let newTeam = res.json
+                let newTeam = res.data
                 dispatch({
                     type: ADD_TEAM_SUCCESS,
                     payload: newTeam

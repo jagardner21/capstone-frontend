@@ -20,7 +20,7 @@ const Teams = (props) => {
         <Fragment>
             <Modal isOpen={newTeamModal} toggle={toggleNewTeamModal}>
                 <ModalHeader>New Team</ModalHeader>
-                <NewTeam toggleNewTeamModal={toggleNewTeamModal} team={props.team}></NewTeam>
+                <NewTeam toggleNewTeamModal={toggleNewTeamModal}></NewTeam>
             </Modal>
             <Container className="mt-5">
             <h3 className="mb-3">Troubleshooter Teams</h3>

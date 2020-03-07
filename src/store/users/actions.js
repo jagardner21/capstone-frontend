@@ -54,7 +54,7 @@ export const addUser = newUser => {
         })
         axios.post(`${url}/users`, newUser)
             .then(res => {
-                let newUser = res.json
+                let newUser = res.data
                 dispatch({
                     type: ADD_USER_SUCCESS,
                     payload: newUser

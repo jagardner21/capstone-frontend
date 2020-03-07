@@ -18,9 +18,9 @@ class NewTeamMember extends Component {
     }
 
     handleSubmit = e => {
-        console.log("WORKING!!!")
-        // e.preventDefault()
-        // this.props.dispatch(addUser(this.state))
+        e.preventDefault()
+        this.props.dispatch(addUser(this.state))
+        this.props.toggleAddTeamMemberModal()
     }
 
     render () {

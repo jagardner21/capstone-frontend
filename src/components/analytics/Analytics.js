@@ -104,12 +104,11 @@ class Analytics extends Component {
                     </Row>
                     
                 </Form>
-                <div className="mt-4">
-                    
+                <div className="mt-2">
                     
                     {this.state.endDate && this.state.startDate && this.state.teamId ? 
                     <div>
-                        <p>Hours per task for {selectedTeam && selectedTeam.name}</p>
+                        <h4 className="mb-3">Hours per task for {selectedTeam && selectedTeam.name}</h4>
                         <BarChart width={700} height={400} data={data}>
                             <CartesianGrid stroke="#f5f5f5" />
                             <XAxis dataKey="name"></XAxis>
@@ -120,7 +119,7 @@ class Analytics extends Component {
                         <Button onClick={() => this.handleDownload(data, selectedTeam.name)}>Download CSV</Button>
                     </div> 
                     : 
-                    <p>Please select a team and date range</p>
+                    <h4>Please select a team and date range to view event data.</h4>
                     }
                 </div>                
             </div>
