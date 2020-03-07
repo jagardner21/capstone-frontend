@@ -6,6 +6,7 @@ import { editTeam } from '../../store/teams/actions'
 class EditTeam extends Component {
 
     state = {
+        id: this.props.team.id,
         name: ''
     }
 
@@ -17,9 +18,9 @@ class EditTeam extends Component {
     }
 
     handleSubmit = e => {
-        console.log("WORKING!!!")
-        // e.preventDefault()
-        // this.props.dispatch(editTeam(this.state))
+        e.preventDefault()
+        this.props.dispatch(editTeam(this.state))
+        this.props.toggleEditTeamModal()
     }
 
     render () {

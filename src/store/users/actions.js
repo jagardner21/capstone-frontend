@@ -74,7 +74,7 @@ export const editUser = editedUser => {
         dispatch({
             type: EDIT_USER_PENDING
         })
-        axios.patch(`${url}/users/${editedUser.id}`, editedUser)
+        axios.patch(`${url}/users`, editedUser)
             .then(res => {
                 dispatch({
                     type: EDIT_USER_SUCCESS,

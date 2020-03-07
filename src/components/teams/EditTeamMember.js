@@ -6,15 +6,24 @@ import { editUser } from '../../store/users/actions'
 class EditTeamMember extends Component {
 
     state = {
+        id: this.props.user.id,
         name: '',
-        team_id: 0,
+        team_id: this.props.user.team_id,
     }
 
     handleChange = e => {
         let { name, value } = e.target
-        this.setState({
-            [name]: value
-        })
+        if(name == "team_id"){
+            let numberValue = Number(value)
+            this.setState({
+                [name]: numberValue
+            }, () => console.log("STATE", this.state))
+        } else {
+            this.setState({
+                [name]: value
+            }, () => {console.log("STATE", this.state)})
+        }
+        
     }
 
     handleSubmit = e => {
@@ -48,7 +57,7 @@ class EditTeamMember extends Component {
                                     <Label className="mr-2">New Name:</Label>
                                     <Input onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.props.user.name} default={this.props.user.name} className="mr-3 mb-2"></Input>
                                     <Label className="mr-2">New Team:</Label>
-                                    <Input onChange={this.handleChange} name="team_id" type="select" value={this.state.team_id} className="mr-3">
+                                    <Input onChange={this.handleChange} name="team_id" type="select" value={this.state.team_id} defaultValue={this.props.user.team_id} className="mr-3">
                                         <option selected value={this.props.user.team_id}>{userTeamName}</option>
                                         {teamsOptions}    
                                     </Input>

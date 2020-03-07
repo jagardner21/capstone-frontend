@@ -61,7 +61,7 @@ export const editTeam = editedTeam => {
         dispatch({
             type: EDIT_TEAM_PENDING
         })
-        axios.patch(`${url}/teams/${editedTeam.id}`, editedTeam)
+        axios.patch(`${url}/teams`, editedTeam)
             .then(res => {
                 dispatch({
                     type: EDIT_TEAM_SUCCESS,
@@ -73,6 +73,7 @@ export const editTeam = editedTeam => {
                     type: EDIT_TEAM_FAILED,
                     payload: error
                 })
+                alert(error + ". Failed to update team information.")
             })
     }
 }
