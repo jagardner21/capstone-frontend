@@ -20,14 +20,14 @@ class EditTeamMember extends Component {
     handleSubmit = e => {
         console.log("WORKING!!!")
         // e.preventDefault()
-        // this.props.dispatch(editTeam(this.state))
+        // this.props.dispatch(editUser(this.state))
     }
 
     render () {
 
         let teams = this.props.teams
         let userTeam = teams.filter(team => {
-            return team.id == this.props.teamMember.team_id
+            return team.id == this.props.user.team_id
         })[0]
 
         let userTeamName = userTeam.name
@@ -46,10 +46,10 @@ class EditTeamMember extends Component {
                             <Form onSubmit={this.handleSubmit}>
                                 <FormGroup className="mt-3 mb-3">
                                     <Label className="mr-2">New Name:</Label>
-                                    <Input onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.props.teamMember.name} default={this.props.teamMember.name} className="mr-3 mb-2"></Input>
+                                    <Input onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.props.user.name} default={this.props.user.name} className="mr-3 mb-2"></Input>
                                     <Label className="mr-2">New Team:</Label>
                                     <Input onChange={this.handleChange} name="team_id" type="select" value={this.state.team_id} className="mr-3">
-                                        <option selected value={this.props.teamMember.team_id}>{userTeamName}</option>
+                                        <option selected value={this.props.user.team_id}>{userTeamName}</option>
                                         {teamsOptions}    
                                     </Input>
                                 </FormGroup>                          

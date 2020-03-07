@@ -7,7 +7,8 @@ class DeleteTeam extends Component {
 
     state = {
         confirmation: '',
-        deleteButtonActive: false
+        deleteButtonActive: false,
+        team_id: this.props.team.id
     }
 
     handleChange = e => {
@@ -29,7 +30,7 @@ class DeleteTeam extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.dispatch(deleteTeam("!!!!!!!!!!!!!!! needs to be req.params maybe? --> OOORR team.id, yeah yeah, that."))
+        this.props.dispatch(deleteTeam(this.state.team_id))
     }
 
     render () {
@@ -41,7 +42,7 @@ class DeleteTeam extends Component {
                             <Form onSubmit={this.handleSubmit}>
                                 <FormGroup className="mt-3 mb-3">
                                     <Label className="mr-2">DELETE TEAM FOR REAL?</Label>
-                                    <Input onChange={this.handleChange} name="confirmation" value={this.state.confirmation} placeholder={"Type 'I am sure' to confirm"} default={this.props.team.name} className="mr-3 mb-3"></Input>
+                                    <Input onChange={this.handleChange} name="confirmation" value={this.state.confirmation} placeholder={"Type 'I am sure' to confirm"}  className="mr-3 mb-3"></Input>
                                 </FormGroup>                          
                             </Form>
                         </Col>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form,  Container, Row, Col, Button, Modal, ModalHeader, ModalFooter, ModalBody, Label, Input, Table } from 'reactstrap'
 import TeamMember from './TeamMember'
+import NewTeamMember from './NewTeamMember'
 import EditTeam from './EditTeam'
 import DeleteTeam from './DeleteTeam'
 import { connect } from 'react-redux'
@@ -15,7 +16,9 @@ const Team = (props) => {
 
     const toggleDeleteTeamModal = () => setDeleteTeamModal(!deleteTeamModal)
 
-    
+    const [addTeamMemberModal, setAddTeamMemberModal] = useState(false)
+
+    const toggleAddTeamMemberModal = () => setAddTeamMemberModal(!addTeamMemberModal)    
 
     const teamMembers = props.users.map(user => {
         if(user.team_id == props.team.id){
@@ -37,7 +40,11 @@ const Team = (props) => {
                 <DeleteTeam toggleDeleteTeamModal={toggleDeleteTeamModal} toggle={toggleDeleteTeamModal} team={props.team}></DeleteTeam>
             </Modal>
 
-            
+            <Modal isOpen={addTeamMemberModal} toggle={toggleAddTeamMemberModal}>
+                <ModalHeader>Add Troubleshooter to {props.team.name}</ModalHeader>
+                <NewTeamMember toggleAddTeamMemberModal={toggleAddTeamMemberModal} toggle={toggleAddTeamMemberModal} team={props.team}>
+                </NewTeamMember>
+            </Modal>            
 
             <Container className="card status-card pl-3 pt-3 pb-4 pr-3 mb-2">
                 <Row className="mb-4">
@@ -71,7 +78,7 @@ const Team = (props) => {
                 </Row>
                 <Row>
                     <Col className="ml-3" xs="9">
-                        <Button size="sm">Add New Troubleshooter</Button>
+                        <Button onClick={toggleAddTeamMemberModal} size="sm">Add New Troubleshooter</Button>
                     </Col>
                 </Row>
             </Container>
