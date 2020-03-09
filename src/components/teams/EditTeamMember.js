@@ -7,7 +7,7 @@ class EditTeamMember extends Component {
 
     state = {
         id: this.props.user.id,
-        name: '',
+        name: this.props.user.name,
         team_id: this.props.user.team_id,
     }
 
@@ -23,13 +23,12 @@ class EditTeamMember extends Component {
                 [name]: value
             }, () => {console.log("STATE", this.state)})
         }
-        
     }
 
     handleSubmit = e => {
-        console.log("WORKING!!!")
-        // e.preventDefault()
-        // this.props.dispatch(editUser(this.state))
+        e.preventDefault()
+        this.props.dispatch(editUser(this.state))
+        // this.props.toggleEditTeamMemberModal()
     }
 
     render () {

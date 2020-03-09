@@ -7,7 +7,7 @@ class EditTeam extends Component {
 
     state = {
         id: this.props.team.id,
-        name: ''
+        name: this.props.team.name
     }
 
     handleChange = e => {

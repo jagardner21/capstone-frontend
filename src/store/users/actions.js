@@ -78,7 +78,7 @@ export const editUser = editedUser => {
             .then(res => {
                 dispatch({
                     type: EDIT_USER_SUCCESS,
-                    payload: editedUser
+                    payload: res.data
                 })
             })
             .catch(error => {

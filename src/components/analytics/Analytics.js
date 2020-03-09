@@ -54,6 +54,8 @@ class Analytics extends Component {
 
         const data = []
 
+        console.log("DATA", data)
+
         allTeamEvents.forEach(event => {
             const isAfterStartDate = event.date >= this.state.startDate
             const isBeforeEndDate = event.date <= this.state.endDate
@@ -108,6 +110,7 @@ class Analytics extends Component {
                     
                     {this.state.endDate && this.state.startDate && this.state.teamId ? 
                     <div>
+                        {/* {!data ? : } */}
                         <h4 className="mb-3">Hours per task for {selectedTeam && selectedTeam.name}</h4>
                         <BarChart width={700} height={400} data={data}>
                             <CartesianGrid stroke="#f5f5f5" />

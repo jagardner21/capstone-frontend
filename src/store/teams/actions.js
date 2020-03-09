@@ -65,7 +65,7 @@ export const editTeam = editedTeam => {
             .then(res => {
                 dispatch({
                     type: EDIT_TEAM_SUCCESS,
-                    payload: editedTeam
+                    payload: res.data
                 })
             })
             .catch(error => {
