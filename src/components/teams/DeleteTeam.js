@@ -30,7 +30,7 @@ class DeleteTeam extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.dispatch(deleteTeam(this.state.team_id))
+        this.props.dispatch(deleteTeam(this.state.team_id, this.props.team))
     }
 
     render () {

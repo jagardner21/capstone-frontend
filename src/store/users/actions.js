@@ -90,17 +90,16 @@ export const editUser = editedUser => {
     }
 }
 
-export const deleteUser = id => {
+export const deleteUser = (id, userBeingDeleted) => {
     return dispatch => {
         dispatch({
             type: DELETE_USER_PENDING
         })
         axios.delete(`${url}/users/${id}`)
             .then(res => {
-                let deletedUser = res.data
                 dispatch({
                     type: DELETE_USER_SUCCESS,
-                    payload: deletedUser
+                    payload: userBeingDeleted
                 })
             })
             .catch(error => {

@@ -78,17 +78,16 @@ export const editTeam = editedTeam => {
     }
 }
 
-export const deleteTeam = id => {
+export const deleteTeam = (id, teamBeingDeleted) => {
     return dispatch => {
         dispatch({
             type: DELETE_TEAM_PENDING
         })
         axios.delete(`${url}/teams/${id}`)
             .then(res => {
-                let deletedTeam = res.data
                 dispatch({
                     type: DELETE_TEAM_SUCCESS,
-                    payload: deletedTeam
+                    payload: teamBeingDeleted
                 })
             })
             .catch(error => {
