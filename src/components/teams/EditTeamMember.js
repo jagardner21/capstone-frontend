@@ -13,37 +13,23 @@ class EditTeamMember extends Component {
 
     handleChange = e => {
         let { name, value } = e.target
-        if(name == "team_id"){
-            let numberValue = Number(value)
-            this.setState({
-                [name]: numberValue
-            }, () => console.log("STATE", this.state))
-        } else {
-            this.setState({
-                [name]: value
-            }, () => {console.log("STATE", this.state)})
-        }
+        this.setState({
+            [name]: value
+        })
     }
 
     handleSubmit = e => {
         e.preventDefault()
         this.props.dispatch(editUser(this.state))
-        // this.props.toggleEditTeamMemberModal()
+        this.props.toggleEditTeamMemberModal()
     }
 
     render () {
 
         let teams = this.props.teams
-        let userTeam = teams.filter(team => {
-            return team.id == this.props.user.team_id
-        })[0]
-
-        let userTeamName = userTeam.name
 
         let teamsOptions = teams.map(team => {
-            if(team.id !== userTeam.id){
-                return <option key={team.id} value={team.id}>{team.name}</option>
-            }   
+            return <option key={team.id} value={team.id}>{team.name}</option>
         })
 
         return (
@@ -54,11 +40,10 @@ class EditTeamMember extends Component {
                             <Form onSubmit={this.handleSubmit}>
                                 <FormGroup className="mt-3 mb-3">
                                     <Label className="mr-2">New Name:</Label>
-                                    <Input onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.props.user.name} default={this.props.user.name} className="mr-3 mb-2"></Input>
+                                    <Input onChange={this.handleChange} name="name" type="text" value={this.state.name} default={this.props.user.name} className="mr-3 mb-2"></Input>
                                     <Label className="mr-2">New Team:</Label>
-                                    <Input onChange={this.handleChange} name="team_id" type="select" value={this.state.team_id} defaultValue={this.props.user.team_id} className="mr-3">
-                                        <option selected value={this.props.user.team_id}>{userTeamName}</option>
-                                        {teamsOptions}    
+                                    <Input onChange={this.handleChange} name="team_id" type="select" value={this.state.team_id} default={this.props.user.team_id} className="mr-3">
+                                        {teamsOptions && teamsOptions}    
                                     </Input>
                                 </FormGroup>                          
                             </Form>
@@ -66,8 +51,8 @@ class EditTeamMember extends Component {
                     </Row>
                 </Container>
                 <ModalFooter>
-                    <Button onClick={this.handleSubmit} color="primary" >Submit</Button>
-                    <Button color="secondary" onClick={this.props.toggleEditTeamMemberModal}>Cancel</Button>
+                    <Button onClick={this.handleSubmit}   color="primary" >Submit</Button>
+                    <Button onClick={this.props.toggleEditTeamMemberModal} color="secondary" >Cancel</Button>
                 </ModalFooter>
             </Fragment>
         )

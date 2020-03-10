@@ -18,11 +18,11 @@ const TeamMember = (props) => {
     <Fragment>
       <Modal isOpen={editTeamMemberModal} toggle={toggleEditTeamMemberModal}>
         <ModalHeader>Edit Team Member</ModalHeader>
-        <EditTeamMember toggleEditTeamMemberModal={toggleEditTeamMemberModal} toggle={toggleEditTeamMemberModal} user={props.user}></EditTeamMember>
+        <EditTeamMember setEditTeamMemberModal={setEditTeamMemberModal} toggleEditTeamMemberModal={toggleEditTeamMemberModal} toggle={toggleEditTeamMemberModal} user={props.user}></EditTeamMember>
       </Modal>
 
       <Modal isOpen={deleteTeamMemberModal} toggle={toggleDeleteTeamMemberModal}>
-          <ModalHeader>Delete Team member</ModalHeader>
+          <ModalHeader>Delete {props.user.name}?</ModalHeader>
           <DeleteTeamMember toggleDeleteTeamMemberModal={toggleDeleteTeamMemberModal} toggle={toggleDeleteTeamMemberModal} user={props.user}></DeleteTeamMember>
       </Modal>
             

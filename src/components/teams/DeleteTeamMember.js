@@ -30,6 +30,7 @@ class DeleteTeamMember extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
+        // console.log("USER ID", this.state.user_id)
         this.props.dispatch(deleteUser(this.state.user_id))
     }
 
@@ -41,7 +42,7 @@ class DeleteTeamMember extends Component {
                         <Col>
                             <Form onSubmit={this.handleSubmit}>
                                 <FormGroup className="mt-3 mb-3">
-                                    <Label className="mr-2">DELETE TROUBLESHOOTER FOR REAL?</Label>
+                                    <Label className="mr-2">Are you SURE?</Label>
                                     <Input onChange={this.handleChange} name="confirmation" value={this.state.confirmation} placeholder={"Type 'I am sure' to confirm"} className="mr-3 mb-3"></Input>
                                 </FormGroup>                          
                             </Form>
@@ -49,8 +50,8 @@ class DeleteTeamMember extends Component {
                     </Row>
                 </Container>
                 <ModalFooter>
-                    <Button disabled={!this.state.deleteButtonActive} color="danger" onClick={this.handleSubmit}>DELETE USER FOR REAL</Button>
-                    <Button color="secondary" onClick={this.props.toggleDeleteTeamMemberModal}>Cancel</Button>
+                    <Button onClick={this.handleSubmit} disabled={!this.state.deleteButtonActive} color="danger" >DELETE USER FOR REAL</Button>
+                    <Button onClick={this.props.toggleDeleteTeamMemberModal} color="secondary">Cancel</Button>
                 </ModalFooter>
             </Fragment>
         )
