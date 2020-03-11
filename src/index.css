@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Fahkwang&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Text+Me+One&display=swap');
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,8 +10,35 @@ body {
   overflow-y: scroll !important;
 }
 
-
-.navbar-text {
-  color: whitesmoke
+a:hover {
+  color: yellow;
 }
 
+.navbar-color {
+  background-color: #557a95;
+}
+
+.add-button-color {
+  background-color: hotpink;
+}
+
+.edit-button-color {
+
+}
+
+
+.navbar-text {
+  color: white;
+  font-size: 25px;
+  font-family: 'Fahkwang', sans-serif;
+}
+
+.navbar-links {
+  color: whitesmoke;
+  font-size: 18px;
+  font-family: 'Text Me One', sans-serif;
+}
+
+.navbar-links:hover{
+  color: #B1A296
+}

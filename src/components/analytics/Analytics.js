@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { BarChart, Bar, XAxis, CartesianGrid, YAxis, Tooltip, Legend } from 'recharts'
+import { BarChart, Bar, XAxis, CartesianGrid, YAxis, Tooltip } from 'recharts'
 import { connect } from 'react-redux'
-import { CSVLink, CSVDownload } from 'react-csv'
 import { saveAs } from 'file-saver'
 import { json2csv } from 'json-2-csv'
 import { Form, Row, Col, FormGroup, Label, Input, Button} from 'reactstrap'
@@ -54,8 +53,6 @@ class Analytics extends Component {
 
         const data = []
 
-        console.log("DATA", data)
-
         allTeamEvents.forEach(event => {
             const isAfterStartDate = event.date >= this.state.startDate
             const isBeforeEndDate = event.date <= this.state.endDate
@@ -79,6 +76,7 @@ class Analytics extends Component {
         
         return (
             <div className="mb-3 mt-5">
+                <h3 className="mb-3">Analytics</h3>
                 <Form>
                     <Row form >
                         <Col xs={4}>

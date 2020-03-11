@@ -10,25 +10,29 @@ const TopNav = (props) => {
   
   return (
     <div>
-      <Navbar className="navbar" color="dark" dark fixed="top">
+      <Navbar className="navbar navbar-color" dark fixed="top">
         <NavbarBrand><NavLink className="nav-brand navbar-text" to='/'>TRAKR
         </NavLink></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar className="navbar-text">
+          <Nav className="pl-3" navbar >
             <NavItem>
-              <NavLink onClick={toggleNavbar} to='/'>Log Event</NavLink>
+              <NavLink className="navbar-links" onClick={toggleNavbar} to='/'>Log Event</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={toggleNavbar} to='/analytics'>Analytics</NavLink>
+              <NavLink className="navbar-links" onClick={toggleNavbar} to='/analytics'>Analytics</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={toggleNavbar} to='/teams'>Manage Teams</NavLink>
+              <NavLink className="navbar-links" onClick={toggleNavbar} to='/teams'>Manage Teams</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink onClick={toggleNavbar} to='/events'>Manage Events</NavLink>
-            </NavItem>
-            {/* Friends list? -> or a list of users until figuring out how to only show friends and add functionality for searching users to add/remove friends */}
+
+            {/* FUTURE STATE -> NEED TO BE ABLE TO EDIT EVENTS
+                WILL NEED TO ADD CREATED_AT TO EVENT MODEL ON BACKEND
+            */}
+            
+            {/* <NavItem>
+              <NavLink className="navbar-links" onClick={toggleNavbar} to='/events'>Manage Events</NavLink>
+            </NavItem> */}
           </Nav>
         </Collapse>
       </Navbar>
